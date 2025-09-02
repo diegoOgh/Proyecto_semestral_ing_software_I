@@ -28,7 +28,7 @@ Req NO funcionales
 
 Actores:
 
-Usuarios
-Recolectores
-Coordinadores de ruta
-API de geolocalización
+Usuarios: Persona que vive en una direccion establecida que desea reciclar cierta cantidad de material
+Recolectores: Trabajador de una cooperativa de reciclaje que retira el material solicitado por un usuario
+Coordinadores de ruta: Trabajador de una cooperativa de reciclaje que supervisa y asigna las rutas y procesos del reciclaje
+API de geolocalización: Externo a las cooperativas que provee informacion de geolocalizacion para establecer las rutas y aceptar las solicitudes.
