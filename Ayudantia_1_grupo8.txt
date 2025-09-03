@@ -1,11 +1,11 @@
-Vision del problema
+Visión del problema
 
 En muchas comunas del país, empresas de recicladores deben recolectar materiales reciclables desde los hogares. Actualmente no hay eficiencia
 en los retiros de los materiales reciclables, por lo tanto se generan confusiones, demoras y perdidas en las solicitudes de los retiros.
 
 Visión del producto:
 
-Un software con la capacidad de ofrecer un sistema para usuarios , trabajadores de recolección y coordinadores de ruta, donde los usuarios puedan agendar,
+Un software con la capacidad de ofrecer un sistema para usuarios, trabajadores de recolección y coordinadores de ruta, donde los usuarios puedan agendar,
 cancelar o editar el retiro de reciclaje en su hogar, siempre y cuando este dentro de los limites geográficos establecidos, los trabajadores de recolección podran emitir
 reportes de retiros y darles comprobantes a los usuarios en el momento del retiro y visualizar las rutas de recolección, y los coordinadores de ruta podran asignar rutas de recolección.
  
@@ -18,7 +18,7 @@ El sistema debe permitir:
 - Emitir comprobantes para usuarios
 
 
-Req NO funcionales
+Requisitos no funcionales:
 
 - El sistema posee login mediante API (Usuario, Recolector, Coordinador de ruta)
 - Los datos serán guardados en una base de datos relacional, con acceso limitado
