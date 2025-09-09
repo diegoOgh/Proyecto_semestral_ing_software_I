@@ -13,9 +13,11 @@ Requisitos funcionales:
 El sistema debe permitir:
 - Agendar, cancelar o editar el retiro de reciclaje de un usuario
 - Validar del lugar de retiro mediante API de geolocalización
-- Visualizar  planificacion de ruta de recoleccion eficiente para recolectores
+- A los coordinadores y recoletores visualizar la ruta de recoleccion
 - Que el Recolector reporte los retiros
 - Emitir comprobantes para usuarios
+- A los coordinadores planificar y asignar rutas
+- A los coordinadores ver los reportes emitidos por los recoletores
 
 
 Requisitos no funcionales:
@@ -32,3 +34,4 @@ Usuarios: Persona que vive en una direccion establecida que desea reciclar ciert
 Recolectores: Trabajador de una cooperativa de reciclaje que retira el material solicitado por un usuario
 Coordinadores de ruta: Trabajador de una cooperativa de reciclaje que supervisa y asigna las rutas y procesos del reciclaje
 API de geolocalización: Externo a las cooperativas que provee informacion de geolocalizacion para establecer las rutas y aceptar las solicitudes.
+
