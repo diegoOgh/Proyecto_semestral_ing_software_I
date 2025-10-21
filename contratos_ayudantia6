@@ -1,0 +1,24 @@
+Nombre: Solicitud Retiro(string: tipo material, int: KG material)
+Responsabilidades: Guardar la peticion de retiro creada por un usuario.
+Ref: Diagrama de secuncia del sistema(agendar retiro)
+notas: Se guarda la peticion, mas no se registra, ya que debe pasar por validar_retiro() primero para comprobar que la ubicacion del retiro esta en cobertura.
+excepciones: sobrepasa los kg de capacidad maxima de camion (???)
+salida: ubicacion de direccion (???)
+
+Precondiciones: Debe existir el usuario con sus datos
+                Debe haber declarado el tipo de material y su peso a retirar
+
+Postcondiciones: La solicitud de retiro se guarda para que validar_retiro() la use al momento de la validacion
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Nombre: validar_retiro (String: ubicacion, Polygon: zona_cobertura)
+Responsabilidades: Validar si la ubicación de la solicitud de retiro se encuentra dentro del polígono definido como zona de cobertura.
+En caso afirmativo, se autoriza o registra la solicitud de retiro; en caso contrario, se rechaza o retorna un mensaje de error indicando que la ubicación está fuera del área de cobertura.
+ref: Diagrama de secuncia del sistema(agendar retiro)
+notas:               
+salida: boolean + mensaje de error/confirmacion
+Precondiciones: Debe existir una solicitud de retiro hecha por un usuario
+                La solicitud debe tener una direccion real identificable por la api
+
+Postcondiciones: Retorna true y un mensaje de aprobacion si la ubicacion del retiro esta en la zona de cobertura segun la api de geolocalizacion              
+
