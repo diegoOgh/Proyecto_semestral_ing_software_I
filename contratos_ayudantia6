@@ -22,3 +22,14 @@ Precondiciones: Debe existir una solicitud de retiro hecha por un usuario
 
 Postcondiciones: Retorna true y un mensaje de aprobacion si la ubicacion del retiro esta en la zona de cobertura segun la api de geolocalizacion              
 
+-------------------------------------------------------------------------------------------------------------------------------------
+Nombre: Editar_ruta(Id_recolector)
+Responsabilidades: Permite actualizar la información de la ruta planificada para poder añadir o quitar puntos de retiro asignados actualmente a un recolector.
+Ref: Diagrama de secuencia del sistema (Visualizar retiro)
+Notas: Si se edita la ruta de un recolector no se le puede agregar un punto de retiro que ya esté asignado a otro trabajador./Si se agrega un punto de retiro que ya está asignado
+a otro recolector entonces se elimina de la ruta del anterior recolector y se agrega a la ruta del recolector que se está editando. (?
+Excepciones: Si ocurre algún problema al guardar los cambios se mantiene la información original sin las modificaciones.
+Salida: Mensaje de confirmación o error.
+Precondiciones: Debe existir un recolector y tener un id específico. Un recolector debe tener una ruta asignada primero para poder editarla.
+Postcondiciones: La ruta del recolector queda actualizada con el recorrido nuevo si es que la operación es exitosa.
+
