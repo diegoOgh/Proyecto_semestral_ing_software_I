@@ -1,35 +1,53 @@
-Nombre: Solicitud Retiro(string: tipo material, int: KG material)
-Responsabilidades: Guardar la peticion de retiro creada por un usuario.
-Ref: Diagrama de secuncia del sistema(agendar retiro)
-notas: Se guarda la peticion, mas no se registra, ya que debe pasar por validar_retiro() primero para comprobar que la ubicacion del retiro esta en cobertura.
-excepciones: sobrepasa los kg de capacidad maxima de camion (???)
-salida: ubicacion de direccion (???)
+1) solicitud_retiro(material: String, kg_material: Integer)
+Responsabilidades: Guardar la petición de retiro creada por un usuario (sin validarla aún)
+Ref: Caso de uso: Agendar retiro. Diagrama de secuencia: Agendar retiro
+Notas: La petición queda pendiente para validar_retiro()
+Excepciones:
+•	Capacidad por solicitud excedida
+•	Material no permitido
+Salida: null 
+Precondiciones:
+•	Existe usuario autenticado con usuario_id y dirección
+•	Declaración de material a retirar y kg_material > 0
+Postcondiciones:
+•	Objetos creados: Retiro
+•	Enlaces creados o modificados: se crea el vínculo entre el usuario y el nuevo retiro.
+•	Atributos modificados: se modifican atributos en Retiro
 
-Precondiciones: Debe existir el usuario con sus datos
-                Debe haber declarado el tipo de material y su peso a retirar
+2) validar_retiro(ubicacion: String, zona_cobertura: Polygon)
+Responsabilidades: Verificar si la ubicación del retiro está dentro del polígono de cobertura usando la API Geo; autorizar o rechazar el retiro
+Ref: Caso de uso: Agendar retiro (etapa de validación). Diagrama de secuencia: Agendar retiro
+Notas: Llama a API para geocodificar y comprobar pertenencia al polígono
+Salida: resultado: boolean, mensaje: String
+Precondiciones:
+•	Existe Retiro asociado a un Usuario con estado = PENDIENTE_VALIDACION.
+•	ubicacion geolocalizable por la API.
+Postcondiciones:
+•	Objetos creados:
+o	Estado “Validado” o “Rechazado”.
+•	Enlaces creados/modificados:
+o	Retiro — Estado creado para considerar historial
+•	Atributos modificados:  en Retiro
 
-Postcondiciones: La solicitud de retiro se guarda para que validar_retiro() la use al momento de la validacion
+Excepciones:
+•	Fuera del polígono
+•	Fallo de la API
+•	Retiro no está pendiente de validación
 
--------------------------------------------------------------------------------------------------------------------------------------
-Nombre: validar_retiro (String: ubicacion, Polygon: zona_cobertura)
-Responsabilidades: Validar si la ubicación de la solicitud de retiro se encuentra dentro del polígono definido como zona de cobertura.
-En caso afirmativo, se autoriza o registra la solicitud de retiro; en caso contrario, se rechaza o retorna un mensaje de error indicando que la ubicación está fuera del área de cobertura.
-ref: Diagrama de secuncia del sistema(agendar retiro)
-notas:               
-salida: boolean + mensaje de error/confirmacion
-Precondiciones: Debe existir una solicitud de retiro hecha por un usuario
-                La solicitud debe tener una direccion real identificable por la api
-
-Postcondiciones: Retorna true y un mensaje de aprobacion si la ubicacion del retiro esta en la zona de cobertura segun la api de geolocalizacion              
-
--------------------------------------------------------------------------------------------------------------------------------------
-Nombre: Editar_ruta(Id_recolector)
-Responsabilidades: Permite actualizar la información de la ruta planificada para poder añadir o quitar puntos de retiro asignados actualmente a un recolector.
-Ref: Diagrama de secuencia del sistema (Visualizar retiro)
-Notas: Si se edita la ruta de un recolector no se le puede agregar un punto de retiro que ya esté asignado a otro trabajador./Si se agrega un punto de retiro que ya está asignado
-a otro recolector entonces se elimina de la ruta del anterior recolector y se agrega a la ruta del recolector que se está editando. (?
-Excepciones: Si ocurre algún problema al guardar los cambios se mantiene la información original sin las modificaciones.
-Salida: Mensaje de confirmación o error.
-Precondiciones: Debe existir un recolector y tener un id específico. Un recolector debe tener una ruta asignada primero para poder editarla.
-Postcondiciones: La ruta del recolector queda actualizada con el recorrido nuevo si es que la operación es exitosa.
+3) editar_ruta(id_recolector)
+Responsabilidades: Actualizar la ruta planificada de un recolector agregando o quitando retiros validados
+Ref: Caso de uso: Visualizar/Editar ruta. Diagrama de secuencia: Visualizar/Editar ruta
+Notas: Un Retiro puede estar asignado a lo más una Ruta activa
+Excepciones:
+•	Retiro ya asignado a otra ruta
+•	Se supera capacidad de material por retirar
+Salida: mensaje: String, ruta_actualizada: Ruta
+Precondiciones:
+•	Recolector y Ruta existen y están relacionados
+•	Los retiros a agregar están estado = validado
+Postcondiciones:
+•	Objetos creados: ninguno
+•	Enlaces creados/modificados:
+Ruta — Retiro: Para cada retiro crear o eliminar enlace
+•	Atributos modificados: cambian en Ruta
 
