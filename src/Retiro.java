@@ -1,5 +1,3 @@
-package com.proyecto.model;
-
 public class Retiro {
     private static int contadorId = 1;
     private int idRetiro;
@@ -21,6 +19,25 @@ public class Retiro {
                this.usuario.getDireccion().equals(direccion);
     }
 
+    public void asignarParadaruta(Paradaruta paradaruta) {
+        // Desasociar la paradaruta anterior si existe
+        if (this.paradaruta != null && this.paradaruta != paradaruta) {
+            Paradaruta anterior = this.paradaruta;
+            this.paradaruta = null;
+            if (anterior.getRetiro() == this) {
+                anterior.setRetiro(null);
+            }
+        }
+
+        // Asociar la nueva paradaruta
+        this.paradaruta = paradaruta;
+        if (paradaruta != null && paradaruta.getRetiro() != this) {
+            paradaruta.setRetiro(this);
+        }
+    }
+
+    
+
     // Getters y Setters
     public int getIdRetiro() { return idRetiro; }
 
@@ -34,8 +51,10 @@ public class Retiro {
     public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 
     public Paradaruta getParadaruta() { return paradaruta; }
-    public void setParadaruta(Paradaruta paradaruta) { this.paradaruta = paradaruta; }
-
+    public void setParadaruta(Paradaruta paradaruta) {
+        asignarParadaruta(paradaruta);
+    }
+    
     public Estado getEstado() { return estado; }
     public void setEstado(Estado estado) { this.estado = estado; }
 

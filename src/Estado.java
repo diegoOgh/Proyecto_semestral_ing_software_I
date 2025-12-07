@@ -1,5 +1,3 @@
-package com.proyecto.model;
-
 public class Estado {
     private String estado;
 

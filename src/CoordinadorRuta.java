@@ -1,5 +1,3 @@
-package com.proyecto.model;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +10,6 @@ public class CoordinadorRuta extends Trabajador {
         this.rutas = new ArrayList<>();
     }
 
-    /**
-     * El Coordinador puede ver las rutas de cualquier trabajador (incluyendo las suyas)
-     * Si idTrabajador es el suyo, ve sus propias rutas
-     * Si idTrabajador es de otro trabajador, ve las rutas de ese trabajador
-     */
     @Override
     public List<Ruta> solicitudRuta(int idTrabajador) {
         if (this.idTrabajador == idTrabajador) {
@@ -41,12 +34,7 @@ public class CoordinadorRuta extends Trabajador {
             System.out.println("Ruta asignada al Coordinador: " + this.nombreCompleto);
         }
     }
-
-    /**
-     * Edita un retiro dentro de una ruta:
-     * - Permite eliminar paradarutas asociadas
-     * - Permite cambiar el estado del retiro
-     */
+    
     public void editarPuntoRecoleccion(int idRetiro, Retiro retiro, CoordinadorRutaOperaciones operaciones) {
         if (retiro != null && retiro.getIdRetiro() == idRetiro) {
             System.out.println("=== Editando Retiro ID: " + idRetiro + " ===");
@@ -58,9 +46,7 @@ public class CoordinadorRuta extends Trabajador {
         }
     }
 
-    /**
-     * Elimina una paradaruta del retiro
-     */
+    
     public void eliminarParadaruta(Retiro retiro, Paradaruta paradaruta) {
         if (retiro.getParadaruta() != null && retiro.getParadaruta().equals(paradaruta)) {
             retiro.setParadaruta(null);
@@ -70,9 +56,7 @@ public class CoordinadorRuta extends Trabajador {
         }
     }
 
-    /**
-     * Cambia el estado del retiro
-     */
+    
     public void cambiarEstadoRetiro(Retiro retiro, String nuevoEstado) {
         if (retiro != null) {
             Estado estadoAnterior = retiro.getEstado();
