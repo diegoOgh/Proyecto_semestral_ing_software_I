@@ -1,0 +1,37 @@
+Visión del problema
+
+En muchas comunas del país, empresas de recicladores deben recolectar materiales reciclables desde los hogares. Actualmente no hay eficiencia
+en los retiros de los materiales reciclables, por lo tanto se generan confusiones, demoras y perdidas en las solicitudes de los retiros.
+
+Visión del producto:
+
+Un software con la capacidad de ofrecer un sistema para usuarios, trabajadores de recolección y coordinadores de ruta, donde los usuarios puedan agendar,
+cancelar o editar el retiro de reciclaje en su hogar, siempre y cuando este dentro de los limites geográficos establecidos, los trabajadores de recolección podran emitir
+reportes de retiros y darles comprobantes a los usuarios en el momento del retiro y visualizar las rutas de recolección, y los coordinadores de ruta podran asignar rutas de recolección.
+ 
+Requisitos funcionales:
+El sistema debe permitir:
+- Agendar, cancelar o editar el retiro de reciclaje de un usuario
+- Validar del lugar de retiro mediante API de geolocalización
+- A los coordinadores y recoletores visualizar la ruta de recoleccion
+- Que el Recolector reporte los retiros
+- Emitir comprobantes para usuarios
+- A los coordinadores planificar y asignar rutas
+- A los coordinadores ver los reportes emitidos por los recoletores
+
+
+Requisitos no funcionales:
+
+- El sistema posee login mediante API (Usuario, Recolector, Coordinador de ruta)
+- Los datos serán guardados en una base de datos relacional, con acceso limitado
+- Las solicitudes son actualizadas diariamente
+- Cada ruta posee una capacidad máxima de material reciclable
+- Documentar el tipo de material a reciclar
+
+Actores:
+
+Usuarios: Persona que vive en una direccion establecida que desea reciclar cierta cantidad de material
+Recolectores: Trabajador de una cooperativa de reciclaje que retira el material solicitado por un usuario
+Coordinadores de ruta: Trabajador de una cooperativa de reciclaje que supervisa y asigna las rutas y procesos del reciclaje
+API de geolocalización: Externo a las cooperativas que provee informacion de geolocalizacion para establecer las rutas y aceptar las solicitudes.
+
